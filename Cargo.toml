@@ -38,11 +38,18 @@ spn-network-types = { path = "crates/types/network" }
 spn-vapp-core = { path = "crates/vapp" }
 
 # sp1
-sp1-sdk = "5.1.0"
-sp1-prover = "5.1.0"
-sp1-verifier = "5.1.0"
-sp1-zkvm = "5.1.0"
-sp1-build = "5.1.0"
+# sp1-sdk = "5.1.0"
+# sp1-prover = "5.1.0"
+# sp1-verifier = "5.1.0"
+# sp1-zkvm = "5.1.0"
+# sp1-build = "5.1.0"
+
+# for local development
+sp1-sdk = { path = "../sp1-wip/crates/sdk" }
+sp1-prover = { path = "../sp1-wip/crates/prover" }
+sp1-verifier = { path = "../sp1-wip/crates/verifier" }
+sp1-zkvm = { path = "../sp1-wip/crates/zkvm/entrypoint" }
+sp1-build = { path = "../sp1-wip/crates/build" }
 
 # aws
 aws-config = "1.5.3"

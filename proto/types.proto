@@ -147,6 +147,8 @@ message RequestProofRequestBody {
   TransactionVariant variant = 19;
   // The treasury address.
   bytes treasury = 20;
+  // Nonce for proof request
+  bytes proof_nonce = 21;
 }
 
 message RequestProofResponse {
@@ -350,6 +352,8 @@ message ProofRequest {
   optional string max_price_per_pgu = 35;
   // The proof request error, if any.
   ProofRequestError error = 36;
+  // Nonce for proof request
+  bytes proof_nonce = 37;
 }
 
 message GetProofRequestStatusRequest {

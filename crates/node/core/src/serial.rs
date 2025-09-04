@@ -11,7 +11,7 @@ use alloy_signer_local::PrivateKeySigner;
 use anyhow::{Context, Result};
 use chrono::{self, DateTime};
 use nvml_wrapper::Nvml;
-use sp1_sdk::{EnvProver, SP1ProofMode, SP1Stdin};
+use sp1_sdk::{env::EnvProver, Prover, SP1ProofMode, SP1Stdin};
 use spn_artifacts::{extract_artifact_name, Artifact};
 use spn_network_types::{
     prover_network_client::ProverNetworkClient, BidRequest, BidRequestBody, ExecutionStatus,
@@ -579,6 +579,7 @@ impl<C: NodeContext> NodeProver<C> for SerialProver {
             let request_id_hex = hex::encode(&request.request_id);
             info!(
                 request_id = %request_id_hex,
+                proof_nonce = %hex::encode(request.proof_nonce),
                 vk_hash = %hex::encode(request.vk_hash),
                 version = %request.version,
                 mode = %request.mode,
@@ -645,7 +646,7 @@ impl<C: NodeContext> NodeProver<C> for SerialProver {
 
                     let start = Instant::now();
                     info!("{SERIAL_PROVER_TAG} Generating proof...");
-                    let proof = prover.prove(&pk, &stdin).mode(mode).run();
+                    let proof = prover.prove(&pk, &stdin).with_nonce([1,2,3,4]).mode(mode).run();
                     let proving_time = start.elapsed();
                     info!(duration = %proving_time.as_secs_f64(), cycles = %cycles, "{SERIAL_PROVER_TAG} Proof generation complete.");
                     (proof, cycles, proving_time)

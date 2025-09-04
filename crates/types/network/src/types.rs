@@ -164,6 +164,9 @@ pub struct RequestProofRequestBody {
     /// The treasury address.
     #[prost(bytes = "vec", tag = "20")]
     pub treasury: ::prost::alloc::vec::Vec<u8>,
+    /// Nonce for proof request
+    #[prost(bytes = "vec", tag = "21")]
+    pub proof_nonce: ::prost::alloc::vec::Vec<u8>,
 }
 #[derive(serde::Serialize, serde::Deserialize)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -457,6 +460,9 @@ pub struct ProofRequest {
     /// The proof request error, if any.
     #[prost(enumeration = "ProofRequestError", tag = "36")]
     pub error: i32,
+    /// Nonce for proof request
+    #[prost(bytes = "vec", tag = "37")]
+    pub proof_nonce: ::prost::alloc::vec::Vec<u8>,
 }
 #[derive(serde::Serialize, serde::Deserialize)]
 #[derive(Clone, PartialEq, ::prost::Message)]

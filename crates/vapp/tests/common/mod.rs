@@ -591,6 +591,7 @@ pub fn create_clear_tx_with_options(
         max_price_per_pgu: max_price_per_pgu.unwrap_or("100000").to_string(),
         variant: TransactionVariant::RequestVariant as i32,
         treasury: signer("treasury").address().to_vec(),
+        proof_nonce: vec![],
     };
 
     // Compute the request ID from the request body and signer.
